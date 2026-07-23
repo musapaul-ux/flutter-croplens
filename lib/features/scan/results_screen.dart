@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/widgets/primary_button.dart';
 import '../../data/models/scan_model.dart';
+import '../../core/utils/image_url_resolver.dart';
 
 /// Screen 7 — Results.
 /// The scan is already auto-saved to history by the backend at upload time
@@ -43,7 +44,7 @@ class ResultsScreen extends StatelessWidget {
                 child: AspectRatio(
                   aspectRatio: 4 / 3,
                   child: CachedNetworkImage(
-                    imageUrl: s.imageUrl,
+                    imageUrl: ImageUrlResolver.resolve(s.imageUrl),
                     fit: BoxFit.cover,
                     errorWidget: (context, url, error) => Container(
                       color: AppColors.primary.withOpacity(0.08),

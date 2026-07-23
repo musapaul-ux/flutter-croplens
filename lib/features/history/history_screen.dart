@@ -8,6 +8,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/widgets/empty_state.dart';
 import '../../data/models/scan_model.dart';
 import '../../providers/history_provider.dart';
+import '../../core/utils/image_url_resolver.dart';
 
 /// Screen 8 — History.
 /// Every completed scan, with search, filter/sort, and delete.
@@ -231,7 +232,7 @@ class _HistoryCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: CachedNetworkImage(
-                imageUrl: scan.imageUrl,
+                imageUrl: ImageUrlResolver.resolve(scan.imageUrl),
                 width: 64,
                 height: 64,
                 fit: BoxFit.cover,

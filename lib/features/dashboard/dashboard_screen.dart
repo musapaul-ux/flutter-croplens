@@ -10,6 +10,7 @@ import '../../core/widgets/empty_state.dart';
 import '../../data/models/scan_model.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/dashboard_provider.dart';
+import '../../core/utils/image_url_resolver.dart';
 
 /// Screen 5 — Dashboard. Shows scan totals, recent scans, and a large
 /// floating Scan button that immediately opens the camera.
@@ -46,7 +47,7 @@ class DashboardScreen extends ConsumerWidget {
                       CircleAvatar(
                         radius: 24,
                         backgroundColor: AppColors.primary.withOpacity(0.12),
-                        backgroundImage: user?.profileImage != null ? CachedNetworkImageProvider(user!.profileImage!) : null,
+                        backgroundImage: user?.profileImage != null ? CachedNetworkImageProvider(ImageUrlResolver.resolve(user!.profileImage!)) : null,
                         child: user?.profileImage == null
                             ? Icon(Icons.person, color: AppColors.primary)
                             : null,
@@ -209,7 +210,7 @@ class _RecentScanCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: CachedNetworkImage(
-                imageUrl: scan.imageUrl,
+                imageUrl: ImageUrlResolver.resolve(scan.imageUrl),
                 width: 60,
                 height: 60,
                 fit: BoxFit.cover,

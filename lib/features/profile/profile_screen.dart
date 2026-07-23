@@ -13,6 +13,7 @@ import '../../core/widgets/primary_button.dart';
 import '../../data/repositories/user_repository.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/theme_provider.dart';
+import '../../core/utils/image_url_resolver.dart';
 
 /// Screen 9 — Profile.
 /// Profile picture, name, email, account creation date.
@@ -75,7 +76,7 @@ class ProfileScreen extends ConsumerWidget {
                       CircleAvatar(
                         radius: 48,
                         backgroundColor: AppColors.primary.withOpacity(0.12),
-                        backgroundImage: user?.profileImage != null ? CachedNetworkImageProvider(user!.profileImage!) : null,
+                        backgroundImage: user?.profileImage != null ? CachedNetworkImageProvider(ImageUrlResolver.resolve(user!.profileImage!)) : null,
                         child: user?.profileImage == null ? Icon(Icons.person, size: 44, color: AppColors.primary) : null,
                       ),
                       Positioned(
