@@ -59,12 +59,12 @@ class AuthRepository {
   }
 
   Future<void> resetPassword({
-    required String token,
+    required String code,
     required String newPassword,
     required String confirmPassword,
   }) async {
     await _client.post('/auth/reset-password', data: {
-      'token': token,
+      'code': code,
       'newPassword': newPassword,
       'confirmPassword': confirmPassword,
     });

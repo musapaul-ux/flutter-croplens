@@ -7,7 +7,7 @@ import '../../features/welcome/welcome_screen.dart';
 import '../../features/auth/signup_screen.dart';
 import '../../features/auth/login_screen.dart';
 import '../../features/auth/forgot_password_screen.dart';
-import '../../features/auth/reset_password_screen.dart';
+// import '../../features/auth/reset_password_screen.dart';
 import '../../features/shell/main_shell.dart';
 import '../../features/dashboard/dashboard_screen.dart';
 import '../../features/scan/scan_screen.dart';
@@ -22,7 +22,7 @@ class RouteNames {
   static const signup = 'signup';
   static const login = 'login';
   static const forgotPassword = 'forgot-password';
-  static const resetPassword = 'reset-password';
+  // static const resetPassword = 'reset-password';
   static const dashboard = 'dashboard';
   static const scan = 'scan';
   static const results = 'results';
@@ -50,10 +50,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       final isAuthenticated = authState.status == AuthStatus.authenticated;
       final isUnknown = authState.status == AuthStatus.unknown;
 
-      final publicRoutes = ['/', '/signup', '/login', '/forgot-password'];
-      final isGoingToPublic = publicRoutes.any((p) => state.matchedLocation == p) ||
-          state.matchedLocation.startsWith('/reset-password');
-
+    final publicRoutes = ['/', '/signup', '/login', '/forgot-password'];
+      final isGoingToPublic = publicRoutes.any((p) => state.matchedLocation == p);
       if (isUnknown) return null; // still checking session — don't redirect yet
 
       if (!isAuthenticated && !isGoingToPublic) return '/';
@@ -81,15 +79,15 @@ final routerProvider = Provider<GoRouter>((ref) {
         name: RouteNames.forgotPassword,
         builder: (context, state) => const ForgotPasswordScreen(),
       ),
-      GoRoute(
-        path: '/reset-password',
-        name: RouteNames.resetPassword,
-        builder: (context, state) {
-          final token = state.uri.queryParameters['token'];
-          return ResetPasswordScreen(token: token);
-        },
-      ),
-      // Authenticated shell with persistent bottom navigation
+      // GoRoute(
+      //   path: '/reset-password',
+      //   name: RouteNames.resetPassword,
+      //   builder: (context, state) {
+      //     final token = state.uri.queryParameters['token'];
+      //     return ResetPasswordScreen(token: token);
+      //   },
+      // ),
+      //Authenticated shell with persistent bottom navigation
       ShellRoute(
         builder: (context, state, child) => MainShell(child: child),
         routes: [
